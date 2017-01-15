@@ -1,0 +1,10 @@
+{
+  "title": "电影名字",
+  "doctor": "导演",
+  "country": "国家",
+  "year": "上映年份",
+  "time": "录入时间",
+  "check": "查看",
+  "update": "修改",
+  "delete": "删除"
+}

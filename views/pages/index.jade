@@ -1,0 +1,26 @@
+extends ../layout
+
+block style
+  style
+    :stylus
+      .col-md-2
+        .thumbnail
+          >a
+            img
+              width 100%
+          .caption
+            text-align center
+
+block content
+  .container
+    .row
+      each item in movies
+        .col-md-2
+          .thumbnail
+            //- #{var}是传进模板来的值
+            a(href="/movie/#{item._id}")
+              img(src="#{item.poster}",alt="#{item.title}")
+            .caption
+              h3 #{item.title}
+              //-role="button"值是什么？
+              p: a.btn.btn-primary(href="/movie/#{item._id}",role="button") 观看预告片
