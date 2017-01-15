@@ -16,7 +16,7 @@ block content
             th 导演
             th 国家
             th 上映年份
-            //- th 录入时间
+            //-th 录入时间
             th 查看
             th 修改
             th 删除
@@ -28,7 +28,7 @@ block content
               td #{item.country}
               td #{item.year}
               //- moment().format('MM/DD/YYYY')格式化时间
-              //- td #{moment(item.meta.createdAt).format('MM/DD/YYYY')}
+              //-td #{moment(item.meta.createdAt).format('MM/DD/YYYY')}
               td: a(target="_blank",href="../movie/#{item._id}") 查看
               td: a(target="_blank",href="../admin/update/#{item._id}") 修改
               td

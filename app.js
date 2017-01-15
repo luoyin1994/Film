@@ -1,5 +1,6 @@
 //引入
 var express    = require('express')
+var moment     = require('moment')
 var path       = require('path')
 var bodyParser = require('body-parser')
 var mongoose   = require('mongoose')
@@ -7,7 +8,7 @@ var _          = require('underscore')
 var Movie      = require('./models/movie')
 var app        = express()
 
-mongoose.connect('mongodb://localhost/imooc')
+mongoose.connect('127.0.0.1:27017/imooc')
 
 //视图
 /*这里设置render的目录*/
@@ -54,9 +55,17 @@ app.get('/movie/:id', function (req, res) {/*路由中:id是关于数字的集�
 //admin page
 app.get('/admin/movie', function (req, res) {
     res.render('admin', {
-        title : 'imooc 后台录入页',
-        inputs: require('./testdata/pages/admin/input')
-        // movie : movie
+        title: 'imooc 后台录入页',
+        movie: {
+            doctor  : '',
+            title   : '',
+            language: '',
+            country : '',
+            summary : '',
+            flash   : '',
+            poster  : '',
+            year    : ''
+        }
     })
 })
 
@@ -74,8 +83,9 @@ app.get('/admin/update/:id', function (req, res) {
 })
 //admin post movie
 app.post('/admin/movie/new', function (req, res) {
-    var id       = req.body.movie._id
-    var movieObj = req.body.movie
+    var movie    = req.body
+    var id       = movie._id
+    var movieObj = movie
     var _movie
     if (id !== 'undefined') {
         Movie.findById(id, function (err, movie) {
@@ -87,7 +97,8 @@ app.post('/admin/movie/new', function (req, res) {
                 if (err) {
                     console.log(err)
                 }
-                res.redirect('/movie/' + movie._id)
+                //这里不能重定向
+                // res.redirect('/movie/' + movie._id)
             })
         })
 
