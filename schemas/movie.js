@@ -31,7 +31,7 @@ MovieSchema.pre('save', function (next) {
     next()
 })
 
-Movieschema.statics = {
+MovieSchema.statics = {
     fetch   : function (cb) {
         return this
             .find({})

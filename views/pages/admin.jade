@@ -9,12 +9,13 @@ extends ../layout
 block content
   .container
     .row
-      form.form-horizontal(method="post",action="/admin/movie")
+      form.form-horizontal(method="post",action="/admin/movie/new")
+        input(type="hidden",name="movie[_id]",value="#{movie._id}")
         each input in inputs
           .form-group
             label.col-sm-2.control-label(for="input#{input.name}") #{input.name_zh}
             .col-sm-10
-              input.form-control(id="input#{input.name}",type="text",name="#{input.name.toLowerCase()}",value="请输入#{input.name}的值")
+              input.form-control(id="input#{input.name}",type="text",name="movie[#{input.name.toLowerCase()}]",value="请输入#{input.name}的值")
         .form-group
           .col-sm-12
             button.btn.btn-default(type="submit") 录入
