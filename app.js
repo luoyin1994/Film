@@ -1,6 +1,5 @@
 //引入
 var express    = require('express')
-var moment     = require('moment')
 var path       = require('path')
 var bodyParser = require('body-parser')
 var mongoose   = require('mongoose')
@@ -14,9 +13,10 @@ mongoose.connect('127.0.0.1:27017/imooc')
 /*这里设置render的目录*/
 app.set('views', './views/pages')
 app.set('view engine', 'jade')
+app.locals.moment = require('moment')//app.locals.moment引用时可以把moment用到jade模板中
 
 //静态文件目录/*重点*/
-app.use(express.static(path.join(__dirname + 'bower_components')))
+app.use(express.static(path.join(__dirname + 'public')))
 
 //body-parser
 app.use(bodyParser.urlencoded({extended: false}))
@@ -46,7 +46,7 @@ app.get('/movie/:id', function (req, res) {/*路由中:id是关于数字的集�
             console.log(err)
         }
         res.render('detail', {
-            title: 'imooc 详情页',
+            title: 'imooc ' + movie.title,
             movie: movie
         })
     })
