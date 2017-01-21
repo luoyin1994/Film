@@ -16,13 +16,13 @@ app.set('view engine', 'jade')
 app.locals.moment = require('moment')//app.locals.moment引用时可以把moment用到jade模板中
 
 //静态文件目录/*重点*/
-app.use(express.static(path.join(__dirname + 'public')))
+app.use(express.static(path.join(__dirname, 'public')))
 
 //body-parser
 app.use(bodyParser.urlencoded({extended: false}))
 
 //端口
-var port = process.env.PORT || 3000
+var port = process.env.PORT || 8080
 app.listen(port)
 
 //index page
@@ -133,6 +133,20 @@ app.get('/admin/list', function (req, res) {
             movies: movies
         })
     })
+})
+
+// list delete movie
+app.delete('/admin/list', function (req, res) {
+    var id = req.query.id
+    if (id) {
+        Movie.remove({_id: id}, function (err, movie) {
+            if (err) {
+                console.log(err)
+            } else {
+                res.json({success: 1})
+            }
+        })
+    }
 })
 
 console.log('imooc started on http://localhost:' + port)
