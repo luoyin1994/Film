@@ -4,17 +4,23 @@
   "description": "This is a web about film movie,use\r  * node \r  * express \r  * jade \r  * mongodb \r  * ...",
   "main": "app.js",
   "dependencies": {
+    "bcryptjs": "^2.4.0",
     "body-parser": "^1.15.2",
     "connect": "^3.5.0",
-    "express": "^4.14.0",
+    "express": "^4.14.1",
     "jade": "^1.11.0",
     "moment": "^2.17.1",
-    "mongoose": "^4.7.6",
     "mongodb": "^2.2.21",
+    "mongoose": "^4.7.6",
     "stylus": "^0.54.5",
     "underscore": "^1.8.3"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-concurrent": "^2.3.1",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-nodemon": "^0.4.2"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
